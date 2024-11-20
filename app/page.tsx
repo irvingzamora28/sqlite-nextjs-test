@@ -2,8 +2,14 @@
 
 import { useEffect, useState } from 'react';
 
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
+
 export default function Home() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
@@ -67,7 +73,7 @@ export default function Home() {
       <div className="w-full max-w-md">
         <h2 className="text-xl font-bold mb-4">Users</h2>
         <ul className="space-y-2">
-  {users.map((user: any) => (
+  {users.map((user: User) => (
     <li key={user.id} className="p-4 bg-gray-100 rounded shadow">
       <p>Name: {user.name}</p>
       <p>Email: {user.email}</p>

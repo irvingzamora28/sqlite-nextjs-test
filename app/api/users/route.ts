@@ -20,6 +20,11 @@ export async function POST(req: Request) {
       return NextResponse.json(newUser); // Return the newly created user
 
   } catch (error) {
-    return NextResponse.json({ error: error.message }, { status: 400 });
+    if (error instanceof Error) {
+      // Explicitly check if `error` is an instance of the Error class
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    }
+    // Handle other types of errors (if necessary)
+    return NextResponse.json({ error: 'An unexpected error occurred' }, { status: 400 });
   }
 }
